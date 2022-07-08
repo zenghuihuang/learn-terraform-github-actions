@@ -12,10 +12,10 @@ terraform {
   required_version = ">= 1.1.0"
 
   cloud {
-    organization = "REPLACE_ME"
+    organization = "ACG-Terraform-GitHub-Actions-Demos"
 
     workspaces {
-      name = "gh-actions-demo"
+      name = "demo-github-actions"
     }
   }
 }
@@ -46,6 +46,10 @@ resource "aws_instance" "web" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
+
+  tags = {
+    Name = "GitHub Actions-Hello World"
+  }
 
   user_data = <<-EOF
               #!/bin/bash
